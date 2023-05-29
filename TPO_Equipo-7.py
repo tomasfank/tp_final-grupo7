@@ -4,27 +4,32 @@ def CargarArchivo(ubicacion, pais=""):
         try:
             linea = linea.rstrip("\n")
             csv = linea.split(";")
+            ubic_csv = csv[3].split(",")
+        except:
+            print("ERROR! Ignorando una línea porque no contiene el formato especificado.")
+            continue
 
+        try:
             datos = {
-                "IATA": csv[0],
-                "ICAO": csv[1],
-                "NOMBRE_AEROPUERTO": csv[2],
+                "IATA": csv[0].strip(),
+                "ICAO": csv[1].strip(),
+                "NOMBRE_AEROPUERTO": csv[2].strip(),
                 "UBICACION": {
                     "LOCALIDAD": "",
                     "REGION": "",
                     "PAIS": ""
                 }
             }
-            ubic_csv = csv[3].split(",")
+
             if len(ubic_csv) == 3:
-                datos["UBICACION"]["LOCALIDAD"] = ubic_csv[0]
-                datos["UBICACION"]["REGION"] = ubic_csv[1]
-                datos["UBICACION"]["PAIS"] = ubic_csv[2]
+                datos["UBICACION"]["LOCALIDAD"] = ubic_csv[0].strip()
+                datos["UBICACION"]["REGION"] = ubic_csv[1].strip()
+                datos["UBICACION"]["PAIS"] = ubic_csv[2].strip()
             elif len(ubic_csv) == 2:
-                datos["UBICACION"]["REGION"] = ubic_csv[0]
-                datos["UBICACION"]["PAIS"] = ubic_csv[1]
+                datos["UBICACION"]["REGION"] = ubic_csv[0].strip()
+                datos["UBICACION"]["PAIS"] = ubic_csv[1].strip()
             else:
-                datos["UBICACION"]["PAIS"] = ubic_csv[0]
+                datos["UBICACION"]["PAIS"] = ubic_csv[0].strip()
 
             ## hacer algo con los datos cargados
             if pais in datos["UBICACION"]["PAIS"]:
@@ -37,4 +42,4 @@ def CargarArchivo(ubicacion, pais=""):
             print(f"Línea: '{linea}'")
     archivo.close()
 
-CargarArchivo("aeropuertos.txt", "Australia")
+CargarArchivo("aeropuertos.txt", "French Polynesia")
