@@ -1,5 +1,5 @@
-def CargarArchivo(ubicacion, pais=""):
-    archivo = open(ubicacion, "rt")
+def CargarArchivo(ubic_archivo, filtro_pais=""):
+    archivo = open(ubic_archivo, "rt")
     for linea in archivo:
         try:
             linea = linea.rstrip("\n")
@@ -32,7 +32,7 @@ def CargarArchivo(ubicacion, pais=""):
                 datos["UBICACION"]["PAIS"] = ubic_csv[0].strip()
 
             ## hacer algo con los datos cargados
-            if pais in datos["UBICACION"]["PAIS"]:
+            if filtro_pais in datos["UBICACION"]["PAIS"]:
                 print(datos)
 
             ## fin de hacer algo con los datos cargados            
