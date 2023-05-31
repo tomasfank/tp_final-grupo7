@@ -1,4 +1,5 @@
 def CargarArchivo(ubic_archivo, filtro_pais=""):
+    resultado = []
     archivo = open(ubic_archivo, "rt")
     for linea in archivo:
         try:
@@ -33,7 +34,7 @@ def CargarArchivo(ubic_archivo, filtro_pais=""):
 
             ## hacer algo con los datos cargados
             if filtro_pais in datos["UBICACION"]["PAIS"]:
-                print(datos)
+                resultado.append(datos)
 
             ## fin de hacer algo con los datos cargados            
 
@@ -41,5 +42,7 @@ def CargarArchivo(ubic_archivo, filtro_pais=""):
             print(f"ERROR! {e}")
             print(f"Línea: '{linea}'")
     archivo.close()
+    return resultado
 
-CargarArchivo("aeropuertos.txt", "French Polynesia")
+resultado = CargarArchivo("aeropuertos.txt", "French Polynesia")
+print(resultado)
