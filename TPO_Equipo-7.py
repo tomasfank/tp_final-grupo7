@@ -33,7 +33,7 @@ def CargarArchivo(ubic_archivo, filtro_pais=""):
                 datos["UBICACION"]["PAIS"] = ubic_csv[0].strip()
 
             ## hacer algo con los datos cargados
-            if filtro_pais in datos["UBICACION"]["PAIS"]:
+            if filtro_pais.lower() in datos["UBICACION"]["PAIS"].lower():
                 resultado.append(datos)
 
             ## fin de hacer algo con los datos cargados            
@@ -44,5 +44,6 @@ def CargarArchivo(ubic_archivo, filtro_pais=""):
     archivo.close()
     return resultado
 
-resultado = CargarArchivo("aeropuertos.txt", "French Polynesia")
-print(resultado)
+resultado = CargarArchivo("aeropuertos.txt", "fRAnCe")
+for r in resultado:
+    print(r)
