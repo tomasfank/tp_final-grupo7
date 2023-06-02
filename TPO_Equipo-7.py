@@ -44,6 +44,13 @@ def CargarArchivo(ubic_archivo, filtro_pais=""):
     archivo.close()
     return resultado
 
+def imprimirDatos(datos):
+    """ Imprime de manera prolija los datos solicitados """
+    print(f'IATA |  ICAO  |  {"AEREOPUERTO":^65}  |  {"UBICACION":^40}')
+    print("-"*140)
+    for dato in datos:
+        print(f'{dato["IATA"]:^3}  |  {dato["ICAO"]:^4}  |  {dato["NOMBRE_AEROPUERTO"]:^65}  |  {dato["UBICACION"]["LOCALIDAD"]}, {dato["UBICACION"]["REGION"]}, {dato["UBICACION"]["PAIS"]}.')
+        
+        
 resultado = CargarArchivo("aeropuertos.txt", "fRAnCe")
-for r in resultado:
-    print(r)
+imprimir = imprimirDatos(resultado)
