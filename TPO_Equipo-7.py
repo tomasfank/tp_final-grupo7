@@ -9,7 +9,7 @@ def CargarArchivo(ubic_archivo, filtro_pais=""):
         except:
             print("ERROR! Ignorando una línea porque no contiene el formato especificado.")
             continue
-
+        
         try:
             datos = {
                 "IATA": csv[0].strip(),
@@ -46,11 +46,17 @@ def CargarArchivo(ubic_archivo, filtro_pais=""):
 
 def imprimirDatos(datos):
     """ Imprime de manera prolija los datos solicitados """
-    print(f'IATA |  ICAO  |  {"AEREOPUERTO":^65}  |  {"UBICACION":^40}')
-    print("-"*140)
+    print(f'IATA |  ICAO  |  {"AEREOPUERTO":^100}  |  {"UBICACION":^40}')
+    print("-"*180)
     for dato in datos:
-        print(f'{dato["IATA"]:^3}  |  {dato["ICAO"]:^4}  |  {dato["NOMBRE_AEROPUERTO"]:^65}  |  {dato["UBICACION"]["LOCALIDAD"]}, {dato["UBICACION"]["REGION"]}, {dato["UBICACION"]["PAIS"]}.')
-        
-        
-resultado = CargarArchivo("aeropuertos.txt", "fRAnCe")
-imprimir = imprimirDatos(resultado)
+        print(f'{dato["IATA"]:^3}  |  {dato["ICAO"]:^4}  |  {dato["NOMBRE_AEROPUERTO"]:<100}  |  {dato["UBICACION"]["LOCALIDAD"]}, {dato["UBICACION"]["REGION"]}, {dato["UBICACION"]["PAIS"]}.')
+
+def ordenarDatos(listado):
+    """ Ordena el listado por región/provincia y localidad """ 
+    datos_ordenados = sorted(listado, key=lambda x: (x["UBICACION"]["REGION"], x["UBICACION"]["LOCALIDAD"]))
+    return datos_ordenados
+
+#programa principal
+resultado = CargarArchivo("aeropuertos.txt", "argentina")
+ordenar = ordenarDatos(resultado)
+imprimir = imprimirDatos(ordenar)
