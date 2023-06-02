@@ -44,6 +44,9 @@ def CargarArchivo(ubic_archivo, filtro_pais=""):
     archivo.close()
     return resultado
 
+def ordenarDatos(datos):
+    pass
+    
 def imprimirDatos(datos):
     """ Imprime de manera prolija los datos solicitados """
     print(f'IATA |  ICAO  |  {"AEREOPUERTO":^65}  |  {"UBICACION":^40}')
