@@ -43,7 +43,7 @@ def CargarArchivo(ubic_archivo, filtro_pais=""):
             print(f"Línea: '{linea}'")
     archivo.close()
     return resultado
-
+  
 def imprimirDatos(datos):
     """ Imprime de manera prolija los datos solicitados """
     print(f'IATA |  ICAO  |  {"AEREOPUERTO":^100}  |  {"UBICACION":^40}')
