@@ -56,7 +56,22 @@ def ordenarDatos(listado):
     datos_ordenados = sorted(listado, key=lambda x: (x["UBICACION"]["REGION"], x["UBICACION"]["LOCALIDAD"]))
     return datos_ordenados
 
-#programa principal
-resultado = CargarArchivo("aeropuertos.txt", "argentina")
-ordenar = ordenarDatos(resultado)
-imprimir = imprimirDatos(ordenar)
+def menu():
+    print('1- Filtrar por Pais. ')
+    print('2- Salir. ')
+    ch = int(input('Ingrese numero: '))
+    while ch != 1 and ch != 2:
+        print('Opcion incorrecta, ingrese numero nuevamente: ')
+        ch = int(input('Ingrese numero: '))
+    if ch == 2:
+        print('Ciao. ')
+    else:
+        pais_s = input('Ingrese el pais que desea buscar: ')
+        if pais_s[0] >= 'a' and pais_s[0] <= 'z':
+            primera_letra = chr(ord(pais_s[0]) - 32)
+            pais_s = primera_letra + pais_s[1:]
+            
+        resultado = CargarArchivo("C:\\archivos\\aeropuertos.txt", pais_s)
+        print(resultado)
+
+menu()
