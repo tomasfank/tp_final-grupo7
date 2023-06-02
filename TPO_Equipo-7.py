@@ -66,11 +66,7 @@ def menu():
     if ch == 2:
         print('Ciao. ')
     else:
-        pais_s = input('Ingrese el pais que desea buscar: ')
-        if pais_s[0] >= 'a' and pais_s[0] <= 'z':
-            primera_letra = chr(ord(pais_s[0]) - 32)
-            pais_s = primera_letra + pais_s[1:]
-            
+        pais_s = input('Ingrese el pais que desea buscar: ')     
         resultado = CargarArchivo("C:\\archivos\\aeropuertos.txt", pais_s)
         print(resultado)
 
