@@ -1,3 +1,5 @@
+ubicacion_archivo = "aeropuertos.txt"
+
 def CargarArchivo(ubic_archivo, filtro_pais=""):
     resultado = []
     archivo = open(ubic_archivo, "rt")
@@ -46,7 +48,7 @@ def CargarArchivo(ubic_archivo, filtro_pais=""):
   
 def imprimirDatos(datos):
     """ Imprime de manera prolija los datos solicitados """
-    print(f'IATA |  ICAO  |  {"AEREOPUERTO":^100}  |  {"UBICACION":^40}')
+    print(f'IATA |  ICAO  |  {"AEROPUERTO":^100}  |  {"UBICACION":^40}')
     print("-"*180)
     for dato in datos:
         print(f'{dato["IATA"]:^3}  |  {dato["ICAO"]:^4}  |  {dato["NOMBRE_AEROPUERTO"]:<100}  |  {dato["UBICACION"]["LOCALIDAD"]}, {dato["UBICACION"]["REGION"]}, {dato["UBICACION"]["PAIS"]}.')
@@ -60,14 +62,14 @@ def menu():
     print('1- Filtrar por Pais. ')
     print('2- Salir. ')
     ch = int(input('Ingrese numero: '))
-    while ch != 1 and ch != 2:
+    while ch not in [1, 2]:
         print('Opcion incorrecta, ingrese numero nuevamente: ')
         ch = int(input('Ingrese numero: '))
     if ch == 2:
         print('Ciao. ')
     else:
         pais_s = input('Ingrese el pais que desea buscar: ')     
-        resultado = CargarArchivo("C:\\archivos\\aeropuertos.txt", pais_s)
-        print(resultado)
+        resultado = CargarArchivo(ubicacion_archivo, pais_s)
+        imprimirDatos(resultado)
 
 menu()
