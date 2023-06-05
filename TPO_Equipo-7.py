@@ -75,7 +75,7 @@ def imprimirDatos(datos):
     print(f'IATA |  ICAO  |  {"AEROPUERTO":^100}  |  {"UBICACION":^40}')
     print("-"*180)
     for dato in datos:
-        localidad = [dato["UBICACION"]["REGION"], dato["UBICACION"]["LOCALIDAD"], dato["UBICACION"]["PAIS"]]
+        localidad = [dato["UBICACION"]["LOCALIDAD"], dato["UBICACION"]["REGION"], dato["UBICACION"]["PAIS"]]
         localidad = list(filter(lambda x: x != "", localidad))
         print(f'{dato["IATA"]:^3}  |  {dato["ICAO"]:^4}  |  {dato["NOMBRE_AEROPUERTO"]:<100}  |  {", ".join(localidad)}.')
 
