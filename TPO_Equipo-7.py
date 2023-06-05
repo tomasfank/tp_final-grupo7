@@ -18,9 +18,15 @@ def LineaADiccionario(linea):
             "UBICACION": {
                 "LOCALIDAD": "",
                 "REGION": "",
+                "PROV": "",
                 "PAIS": ""
             }
         }
+        if len (ubic_split) == 4:
+            datos["UBICACION"]["LOCALIDAD"] = ubic_split[0].strip()
+            datos["UBICACION"]["REGION"] = ubic_split[1].strip()
+            datos["UBICACION"]["PROV"] = ubic_split[2].strip()
+            datos["UBICACION"]["PAIS"] = ubic_split[3].strip()
         if len(ubic_split) == 3:
             datos["UBICACION"]["LOCALIDAD"] = ubic_split[0].strip()
             datos["UBICACION"]["REGION"] = ubic_split[1].strip()
@@ -75,7 +81,7 @@ def imprimirDatos(datos):
     print(f'IATA |  ICAO  |  {"AEROPUERTO":^100}  |  {"UBICACION":^40}')
     print("-"*180)
     for dato in datos:
-        localidad = [dato["UBICACION"]["LOCALIDAD"], dato["UBICACION"]["REGION"], dato["UBICACION"]["PAIS"]]
+        localidad = [dato["UBICACION"]["LOCALIDAD"], dato["UBICACION"]["REGION"], dato["UBICACION"]["PROV"], dato["UBICACION"]["PAIS"]]
         localidad = list(filter(lambda x: x != "", localidad))
         print(f'{dato["IATA"]:^3}  |  {dato["ICAO"]:^4}  |  {dato["NOMBRE_AEROPUERTO"]:<100}  |  {", ".join(localidad)}.')
 
