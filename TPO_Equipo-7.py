@@ -55,7 +55,7 @@ def ObtenerPaises(ubic_archivo):
                 paises.append(datos["UBICACION"]["PAIS"].lower().strip())
         except:
             print("[!] Error convirtiendo una línea.")
-    
+            
     return paises
 
 def CargarArchivo(ubic_archivo, filtro_pais=""):
@@ -107,6 +107,7 @@ def menu(ubicacion_archivo):
             # Si la opción es 1,
             if ch == 1:
                 lista_paises = ObtenerPaises(ubicacion_archivo)
+                interfaceMenu(lista_paises)
                 pais_s = input('Ingrese el pais que desea buscar: ')
 
                 # Si el pais tiene menos de 3 letras, o no está en la lista, es incorrecto.
@@ -125,6 +126,18 @@ def menu(ubicacion_archivo):
                 break
         except ValueError:
             print("[!] Debe elegir entre 1 (Filtrar) o 2 (Salir)")
+
+def interfaceMenu(paises):
+    listaPaises = []
+    for pais in paises:
+        if pais not in listaPaises:
+            listaPaises.append(pais)
+    listaPaises.sort()
+    print("\n+Lista de paises disponibles en el archivo = \n")
+    for x in listaPaises:
+        print(x.title(), end=" | ")
+    print("\n")
+
 
 #inicializar programa
 menu("aeropuertos.txt")
