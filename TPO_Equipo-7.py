@@ -128,14 +128,21 @@ def menu(ubicacion_archivo):
             print("[!] Debe elegir entre 1 (Filtrar) o 2 (Salir)")
 
 def interfaceMenu(paises):
+    """ Imprime prolijamente las opciones que tiene el usuario para elegir """ 
     listaPaises = []
+    i = 0
     for pais in paises:
         if pais not in listaPaises:
             listaPaises.append(pais)
     listaPaises.sort()
-    print("\n+Lista de paises disponibles en el archivo = \n")
+    print("\n+ Lista de paises disponibles en el archivo = \n")
+    a = 0
     for x in listaPaises:
-        print(x.title(), end=" | ")
+        print(f"{x.title():<37}", end=" | ")
+        i += 1
+        if i == 4:
+            print("")
+            i = 0
     print("\n")
 
 
