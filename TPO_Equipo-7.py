@@ -6,7 +6,7 @@ def LineaADiccionario(linea):
         split_archivo = linea.split(";")
         ubic_split = split_archivo[3].split(",")
     except:
-        print("ERROR! Ignorando una línea porque no contiene el formato especificado.")
+        print("[!] Ignorando una línea porque no contiene el formato especificado.")
         return None
     
     # Convierto todos mis datos en un diccionario
@@ -48,7 +48,7 @@ def ObtenerPaises(ubic_archivo):
             if datos["UBICACION"]["PAIS"] not in paises:
                 paises.append(datos["UBICACION"]["PAIS"].lower().strip())
         except:
-            print("Error convirtiendo una línea.")
+            print("[!] Error convirtiendo una línea.")
     
     return paises
 
@@ -65,8 +65,8 @@ def CargarArchivo(ubic_archivo, filtro_pais=""):
             if filtro_pais.lower() in datos["UBICACION"]["PAIS"].lower():
                 resultado.append(datos)
         except Exception as err:
-            print(f"ERROR! {err}")
-            print(f"Línea: '{linea}'")
+            print(f"[!] ERROR! {err}")
+            print(f"[!] Línea: '{linea}'")
     archivo.close()
     return resultado
   
@@ -105,7 +105,7 @@ def menu(ubicacion_archivo):
 
                 # Si el pais tiene menos de 3 letras, o no está en la lista, es incorrecto.
                 while (len(pais_s) < 3) or pais_s.lower() not in lista_paises:
-                    print("El nombre del pais es incorrecto. Por favor ingreselo nuevamente.")
+                    print("[!] El nombre del pais es incorrecto. Por favor ingreselo nuevamente.")
                     pais_s = input('Ingrese el pais que desea buscar: ')
 
                 # Se obtiene resultado, lo ordeno y lo imprimo.
@@ -118,7 +118,7 @@ def menu(ubicacion_archivo):
                 print('Ciao. ')
                 break
         except ValueError:
-            print("Debe elegir entre 1 (Filtrar) o 2 (Salir)")
+            print("[!] Debe elegir entre 1 (Filtrar) o 2 (Salir)")
 
 #inicializar programa
 menu("aeropuertos.txt")
